@@ -136,28 +136,6 @@
 	outline-offset: 2px;
 }
 
-.les-feed-sanitizer-control-weeds {
-	padding: 2px 5px;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	background: transparent;
-	color: #8b5d00;
-	font: 600 11px/16px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-	cursor: pointer;
-}
-
-.les-feed-sanitizer-control-weeds:hover,
-.les-feed-sanitizer-control-weeds:focus-visible {
-	border-color: #c78b00;
-	background: #fff3cd;
-}
-
-.les-feed-sanitizer-control-weeds.active {
-	border-color: #a45600;
-	background: #f2c94c;
-	color: #3d2700;
-}
-
 .les-weeds-mode .les-weeds-hidden {
 	display: none !important;
 }

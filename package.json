@@ -1,7 +1,7 @@
 {
   "title": "LinkedIn Enhancement Suite",
   "name": "linkedin-enhancement-suite",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "description": "A suite of modules that makes LinkedIn more configurable, filterable, and useful",
   "author": "LinkedIn Enhancement Suite contributors",
   "license": "GPL-3.0",
