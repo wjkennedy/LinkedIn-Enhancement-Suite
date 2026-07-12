@@ -89,6 +89,189 @@
 	cursor: pointer;
 }
 
+.les-feed-sanitizer-control-night-mode {
+	display: inline-flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.les-feed-sanitizer-control-night-mode input {
+	position: absolute;
+	opacity: 0;
+}
+
+.les-feed-sanitizer-control-night-mode span {
+	position: relative;
+	display: block;
+	width: 24px;
+	height: 14px;
+	border-radius: 8px;
+	background: #d0d7de;
+	transition: background-color .15s ease;
+}
+
+.les-feed-sanitizer-control-night-mode span::after {
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #fff;
+	box-shadow: 0 1px 2px rgb(0 0 0 / 25%);
+	content: '';
+	transition: transform .15s ease;
+}
+
+.les-feed-sanitizer-control-night-mode input:checked + span {
+	background: #0a66c2;
+}
+
+.les-feed-sanitizer-control-night-mode input:checked + span::after {
+	transform: translateX(10px);
+}
+
+.les-feed-sanitizer-control-night-mode input:focus-visible + span {
+	outline: 2px solid #0a66c2;
+	outline-offset: 2px;
+}
+
+.les-feed-sanitizer-control-weeds {
+	padding: 2px 5px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	background: transparent;
+	color: #8b5d00;
+	font: 600 11px/16px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	cursor: pointer;
+}
+
+.les-feed-sanitizer-control-weeds:hover,
+.les-feed-sanitizer-control-weeds:focus-visible {
+	border-color: #c78b00;
+	background: #fff3cd;
+}
+
+.les-feed-sanitizer-control-weeds.active {
+	border-color: #a45600;
+	background: #f2c94c;
+	color: #3d2700;
+}
+
+.les-weeds-mode .les-weeds-hidden {
+	display: none !important;
+}
+
+.les-weeds-mode .les-weeds-match {
+	display: block !important;
+	max-height: none !important;
+	overflow: visible !important;
+	opacity: 1 !important;
+}
+
+.les-night-mode {
+	color-scheme: dark;
+	background: #121212;
+
+	body,
+	#app,
+	#app > div,
+	main,
+	[data-view-name*='feed'],
+	[data-view-name*='mynetwork'] {
+		background-color: #121212 !important;
+		color: #e9e5df !important;
+	}
+
+	header,
+	article,
+	[role='listitem'],
+	.artdeco-card,
+	[role='dialog'],
+	[data-testid='lazy-column'] > section {
+		background-color: #1d2226 !important;
+		border-color: #3b444c !important;
+		color: #e9e5df !important;
+	}
+
+	p,
+	h1,
+	h2,
+	h3,
+	h4,
+	span,
+	div,
+	button,
+	label {
+		color: inherit;
+	}
+
+	a {
+		color: #8ec5ff;
+	}
+
+	a[href*='/in/'],
+	a[href*='/company/'],
+	a[href*='/school/'],
+	a[href*='/profile/'],
+	a[href*='/in/'] *,
+	a[href*='/company/'] *,
+	a[href*='/school/'] *,
+	a[href*='/profile/'] * {
+		color: #d9ecff !important;
+	}
+
+	a[href*='/in/'] svg,
+	a[href*='/company/'] svg,
+	a[href*='/school/'] svg,
+	a[href*='/profile/'] svg {
+		fill: currentColor;
+	}
+
+	input,
+	select,
+	textarea {
+		border-color: #56616a !important;
+		background-color: #252b30 !important;
+		color: #f3f2ef !important;
+	}
+
+	input::placeholder,
+	textarea::placeholder {
+		color: #b7c3cc !important;
+		opacity: 1;
+	}
+}
+
+html.les-night-mode a[href*='/in/'],
+html.les-night-mode a[href*='/company/'],
+html.les-night-mode a[href*='/school/'],
+html.les-night-mode a[href*='/profile/'],
+html.les-night-mode a[href*='/in/'] *,
+html.les-night-mode a[href*='/company/'] *,
+html.les-night-mode a[href*='/school/'] *,
+html.les-night-mode a[href*='/profile/'] *,
+html.les-night-mode [aria-label*='Profile'] p,
+html.les-night-mode [aria-label*='Profile'] span {
+	color: #d9ecff !important;
+	-webkit-text-fill-color: #d9ecff !important;
+}
+
+html.les-night-mode a[href*='/in/'] svg,
+html.les-night-mode a[href*='/company/'] svg,
+html.les-night-mode a[href*='/school/'] svg,
+html.les-night-mode a[href*='/profile/'] svg,
+html.les-night-mode [aria-label*='Profile'] svg {
+	color: #d9ecff !important;
+	fill: currentColor !important;
+}
+
+html.les-night-mode input::placeholder,
+html.les-night-mode textarea::placeholder {
+	color: #b7c3cc !important;
+	-webkit-text-fill-color: #b7c3cc !important;
+}
+
 .les-feed-sanitizer-control select {
 	max-width: 94px;
 	padding: 2px 3px;
