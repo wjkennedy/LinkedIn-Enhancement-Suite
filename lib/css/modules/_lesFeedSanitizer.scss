@@ -37,6 +37,98 @@
 	opacity: .42;
 }
 
+.les-feed-sanitizer-control {
+	display: inline-flex;
+	align-items: center;
+	gap: 3px;
+	margin-left: 4px;
+	color: #1f2937;
+	font: 600 11px/1.2 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.les-feed-sanitizer-brand {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	padding: 0;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+.les-feed-sanitizer-brand:hover,
+.les-feed-sanitizer-brand:focus-visible {
+	background: #e8f3ff;
+	text-decoration: none;
+}
+
+.les-feed-sanitizer-brand img {
+	display: block;
+	width: 20px;
+	height: 20px;
+	object-fit: contain;
+}
+
+.les-feed-sanitizer-control-mode {
+	display: inline-flex;
+	align-items: center;
+	white-space: nowrap;
+}
+
+.les-feed-sanitizer-control-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+}
+
+.les-feed-sanitizer-control-toggle input {
+	margin: 0;
+	cursor: pointer;
+}
+
+.les-feed-sanitizer-control select {
+	max-width: 94px;
+	padding: 2px 3px;
+	border: 0;
+	border-radius: 4px;
+	background: transparent;
+	color: inherit;
+	font: inherit;
+}
+
+.les-reader-hidden-post {
+	display: none !important;
+}
+
+.les-reader-load-gate {
+	display: flex;
+	grid-column: 1 / -1;
+	justify-content: center;
+	width: 100%;
+	margin: 16px 0 24px;
+	padding: 16px 0;
+	border-top: 1px solid #d0d7de;
+}
+
+.les-reader-load-gate button {
+	min-height: 32px;
+	padding: 5px 14px;
+	border: 1px solid #0a66c2;
+	border-radius: 16px;
+	background: #fff;
+	color: #0a66c2;
+	font: 600 14px/20px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	cursor: pointer;
+}
+
+.les-reader-load-gate button:hover,
+.les-reader-load-gate button:focus-visible {
+	background: #e8f3ff;
+}
+
 .les-reading-density-compact,
 .les-reading-density-reader {
 	--les-feed-gap: 8px;
@@ -94,7 +186,6 @@
 	}
 }
 
-.les-reading-density-comfortable,
 .les-reading-density-reader {
 	--les-feed-gap: 6px;
 	--les-card-padding: 6px;
@@ -120,7 +211,6 @@
 }
 
 .les-feed-layout-multi-column,
-.les-page-network.les-reading-density-comfortable,
 .les-page-network.les-reading-density-reader {
 	--les-column-min: 420px;
 	--les-column-gap: 16px;
@@ -165,8 +255,8 @@
   [data-sdui-screen='com.linkedin.sdui.flagshipnav.mynetwork.Grow'],
   #workspace > div > div > section > [data-testid='lazy-column'][data-component-type='LazyColumn'] {
     box-sizing: border-box !important;
-    width: min(100%, 75vw) !important;
-    max-width: min(100%, 75vw) !important;
+    width: min(90%, 75vw) !important;
+    max-width: min(90%, 75vw) !important;
     margin-right: auto !important;
     margin-left: auto !important;
     overflow-x: clip !important;
@@ -243,7 +333,6 @@
 	}
 }
 
-.les-page-network.les-reading-density-comfortable,
 .les-page-network.les-reading-density-reader {
 	--les-column-count: 2;
 	--les-column-gap: 16px;

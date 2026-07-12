@@ -86,7 +86,8 @@
         "prompt.html",
         "prompt.entry.js",
         "options.css",
-        "options.html"
+        "options.html",
+        "beta48.png"
       ],
       "matches": [
         "https://*.linkedin.com/*"
