@@ -456,6 +456,13 @@ span.multi-count {
 	}
 }
 
+.res_icon {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	background: center / contain no-repeat url('../../images/beta48.png');
+}
+
 #show_stylesheets:target + label {
 	background-color: lightblue;
 }
