@@ -1,0 +1,261 @@
+.les-feed-sanitizer-label {
+	display: inline-flex;
+	align-items: center;
+	width: fit-content;
+	max-width: calc(100% - 16px);
+	margin: 8px 8px 0;
+	padding: 2px 6px;
+	border: 1px solid #8c6d1f;
+	border-radius: 4px;
+	background: #fff7d6;
+	color: #5f4712;
+	font: 600 11px/16px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.les-feed-sanitizer-hide {
+	display: none !important;
+}
+
+.les-feed-sanitizer-collapse {
+	max-height: 112px !important;
+	overflow: hidden !important;
+	position: relative;
+}
+
+.les-feed-sanitizer-collapse::after {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 32px;
+	background: linear-gradient(0deg, #fff, rgb(255 255 255 / 0));
+	pointer-events: none;
+}
+
+.les-feed-sanitizer-dim {
+	opacity: .42;
+}
+
+.les-reading-density-compact,
+.les-reading-density-reader {
+	--les-feed-gap: 8px;
+	--les-card-padding: 8px;
+	--les-post-text-size: 13px;
+	--les-post-line-height: 1.35;
+
+	.scaffold-finite-scroll__content,
+	.scaffold-layout__list,
+	.core-rail {
+		gap: var(--les-feed-gap) !important;
+	}
+
+	.feed-shared-update-v2,
+	[data-urn*='activity'],
+	article,
+	.artdeco-card {
+		margin-top: 0 !important;
+		margin-bottom: var(--les-feed-gap) !important;
+		border-radius: 6px !important;
+	}
+
+	.feed-shared-update-v2,
+	.feed-shared-update-v2__description-wrapper,
+	.feed-shared-update-v2__commentary,
+	.update-components-actor,
+	.feed-shared-actor,
+	.feed-shared-social-action-bar,
+	.social-details-social-counts,
+	.comments-comment-box,
+	.artdeco-card {
+		padding-top: var(--les-card-padding) !important;
+		padding-bottom: var(--les-card-padding) !important;
+	}
+
+	.update-components-text,
+	.feed-shared-update-v2__description,
+	.feed-shared-inline-show-more-text,
+	.feed-shared-text,
+	.feed-shared-update-v2__commentary {
+		font-size: var(--les-post-text-size) !important;
+		line-height: var(--les-post-line-height) !important;
+	}
+
+	.feed-shared-social-action-bar,
+	.social-details-social-counts {
+		min-height: 0 !important;
+	}
+
+	.feed-shared-social-action-bar button,
+	.social-actions-button {
+		min-height: 28px !important;
+		padding-top: 3px !important;
+		padding-bottom: 3px !important;
+	}
+}
+
+.les-reading-density-comfortable,
+.les-reading-density-reader {
+	--les-feed-gap: 6px;
+	--les-card-padding: 6px;
+	--les-post-text-size: 13px;
+
+	.scaffold-layout__aside,
+	.scaffold-layout__sidebar,
+	.scaffold-layout__sticky,
+	aside,
+	[data-view-name*='right-rail'],
+	[data-view-name*='left-rail'] {
+		display: none !important;
+	}
+
+	.scaffold-layout__main,
+	.scaffold-layout__content,
+	main {
+		width: min(100%, 980px) !important;
+		max-width: 980px !important;
+		margin-right: auto !important;
+		margin-left: auto !important;
+	}
+}
+
+.les-feed-layout-multi-column,
+.les-page-network.les-reading-density-comfortable,
+.les-page-network.les-reading-density-reader {
+	--les-column-min: 420px;
+	--les-column-gap: 16px;
+	--les-column-count: 3;
+	--les-page-gutter: 12px;
+
+	.scaffold-layout__aside,
+	.scaffold-layout__sidebar,
+	.scaffold-layout__sticky,
+	[data-view-name*='right-rail'],
+	[data-view-name*='left-rail'] {
+		display: none !important;
+	}
+
+	.scaffold-layout,
+	.scaffold-layout__content,
+	.scaffold-layout__main,
+	#workspace,
+	#workspace > div,
+	#workspace > div > div,
+	#workspace > div > div > section,
+	main {
+		width: 100% !important;
+		max-width: none !important;
+	}
+
+	#workspace > div > div > section {
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: none !important;
+		margin-right: 0 !important;
+		margin-left: 0 !important;
+		padding-right: var(--les-page-gutter) !important;
+		padding-left: var(--les-page-gutter) !important;
+	}
+
+	.scaffold-layout__main {
+		margin-right: 0 !important;
+		margin-left: 0 !important;
+	}
+
+  [data-sdui-screen='com.linkedin.sdui.flagshipnav.mynetwork.Grow'],
+  #workspace > div > div > section > [data-testid='lazy-column'][data-component-type='LazyColumn'] {
+    box-sizing: border-box !important;
+    width: min(100%, 75vw) !important;
+    max-width: min(100%, 75vw) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+    overflow-x: clip !important;
+	}
+
+	.mn-connections__list,
+	.mn-pymk-list,
+  .mn-community-summary__entity-list,
+  .mn-invitations-preview__list,
+  [data-view-name*='connections'] ul,
+  [data-view-name*='mynetwork'] ul,
+  [role='list'],
+  .scaffold-finite-scroll__content {
+    display: grid !important;
+    grid-template-columns: repeat(var(--les-column-count), minmax(min(100%, var(--les-column-min)), 1fr)) !important;
+    gap: var(--les-column-gap) !important;
+    align-items: start !important;
+  }
+
+  [role='list'] > [data-display-contents='true'] {
+    display: block !important;
+  }
+
+  .mn-connections__list > *,
+  .mn-pymk-list > *,
+  .mn-community-summary__entity-list > *,
+  .mn-invitations-preview__list > *,
+  [data-view-name*='connections'] ul > *,
+  [data-view-name*='mynetwork'] ul > *,
+  [role='list'] > *,
+  [role='listitem'],
+  .scaffold-finite-scroll__content > *,
+  .feed-shared-update-v2,
+  [data-urn*='activity'],
+  article {
+		box-sizing: border-box !important;
+		width: 100% !important;
+		max-width: 100% !important;
+		min-width: 0 !important;
+		overflow-x: clip !important;
+	}
+
+	.feed-shared-update-v2,
+	.mn-connection-card,
+	.mn-pymk-list__card,
+  .mn-community-summary__entity-card,
+  .mn-invitations-preview__invite-card,
+  [role='listitem'],
+  [data-urn*='activity'],
+  article,
+  .artdeco-card {
+		break-inside: avoid;
+		page-break-inside: avoid;
+	}
+
+	@media (width >= 1400px) {
+		--les-column-min: 440px;
+	}
+
+	@media (width >= 1900px) {
+		--les-column-min: 560px;
+		--les-column-gap: 18px;
+	}
+
+	@media (width <= 1320px) {
+		--les-column-count: 2;
+	}
+
+	@media (width <= 900px) {
+		--les-column-min: 100%;
+		--les-column-gap: 8px;
+		--les-column-count: 1;
+		--les-page-gutter: 8px;
+	}
+}
+
+.les-page-network.les-reading-density-comfortable,
+.les-page-network.les-reading-density-reader {
+	--les-column-count: 2;
+	--les-column-gap: 16px;
+	--les-column-min: 0;
+
+	[role='list'] {
+		grid-template-columns: repeat(2, minmax(0, 45%)) !important;
+		justify-content: center !important;
+	}
+
+	[role='listitem'] > * {
+		max-width: 100% !important;
+		min-width: 0 !important;
+	}
+}

@@ -49,12 +49,16 @@ const options = commander.program
 	.option('--zip', 'Enable zipping')
 	.option('--mode <type>', 'Set the mode', 'development')
 	.option('--browsers <list>', 'Specify browsers to target', 'chrome')
+	.option('--increment-version [release]', 'Increment package.json version before building (patch, minor, major, prerelease, or an explicit semver version)')
 	.parse(process.argv)
 	.opts();
 
+if (options.incrementVersion) {
+	packageInfo.version = incrementPackageVersion(options.incrementVersion);
+}
+
 const isProduction = options.mode === 'production';
 const devBuildToken = `${Math.random()}`.slice(2);
-const announcementsSubreddit /*: string */ = 'RESAnnouncements';
 const name /*: string */ = packageInfo.title;
 const author /*: string */ = packageInfo.author;
 const description /*: string */ = packageInfo.description;
@@ -63,16 +67,29 @@ const isBeta /*: boolean */ = isBetaVersion(version);
 const isPatch /*: boolean */ = semver.patch(version) !== 0;
 const isMinor /*: boolean */ = !isPatch && semver.minor(version) !== 0;
 const isMajor /*: boolean */ = !isPatch && !isMinor && semver.major(version) !== 0;
-const updatedURL /*: string */ = isBeta ?
-// link to the release listing page instead of a specific release page
-// so if someone goes from the previous version to a hotfix (e.g. 5.10.3 -> 5.12.1)
-// they see the big release notes for the minor release in addition to the changes in the hotfix
-	`https://redditenhancementsuite.com/releases/beta/#v${version}` :
-	`https://redditenhancementsuite.com/releases/#v${version}`;
 const homepageURL /*: string */ = packageInfo.homepage;
+const updatedURL /*: string */ = `${homepageURL}/releases#v${version}`;
 // used for invalidating caches on each build (executed at build time)
 // production builds uses version number to keep the build reproducible
 const buildToken = isProduction ? version : devBuildToken;
+
+function incrementPackageVersion(release) {
+	const releaseType = release === true ? 'patch' : release;
+	const nextVersion = semver.valid(releaseType) || semver.inc(packageInfo.version, releaseType);
+
+	if (!nextVersion) {
+		throw new Error(`Invalid version increment: ${releaseType}`);
+	}
+
+	const packagePath = new URL('./package.json', import.meta.url);
+	const packageText = fs.readFileSync(packagePath, 'utf8');
+	const packageJson = JSON.parse(packageText);
+	packageJson.version = nextVersion;
+	fs.writeFileSync(packagePath, `${JSON.stringify(packageJson, null, 2)}\n`);
+	console.log(`incremented package version ${packageInfo.version} -> ${nextVersion}`);
+
+	return nextVersion;
+}
 
 async function buildForBrowser(targetName, { manifest, noSourceMap, browserName, browserMinVersion, browserMobileMinVersion }) {
 	const context = {
@@ -102,7 +119,6 @@ async function buildForBrowser(targetName, { manifest, noSourceMap, browserName,
 			'process.env.BUILD_TARGET': `"${browserName}"`,
 			'process.env.NODE_ENV': `"${options.mode}"`,
 			'process.env.buildToken': `"${buildToken}"`,
-			'process.env.announcementsSubreddit': `"${announcementsSubreddit}"`,
 			'process.env.name': `"${name}"`,
 			'process.env.author': `"${author}"`,
 			'process.env.description': `"${description}"`,
@@ -138,6 +154,7 @@ async function buildForBrowser(targetName, { manifest, noSourceMap, browserName,
 					{ from: ['./images/css-on.png'], to: ['./'] },
 					{ from: ['./images/icon128.png'], to: ['./'] },
 					{ from: ['./images/icon48.png'], to: ['./'] },
+					{ from: ['./chrome/rules/telemetry.json'], to: ['./rules/'] },
 					{ from: ['./lib/environment/background/permissions/prompt.html'], to: ['./'] },
 					{ from: ['./lib/options/options.html'], to: ['./'] },
 					{ from: ['./node_modules/dashjs/dist/dash.mediaplayer.min.js'], to: ['./'] },
@@ -171,13 +188,8 @@ async function buildForBrowser(targetName, { manifest, noSourceMap, browserName,
 					const outPath = './dist/zip';
 					build.onEnd(async () => {
 						const zip = new JSZip();
-						const files = await fs.promises.readdir(sourceDir);
 
-						await Promise.all(files.map(async file => {
-							const filePath = path.join(sourceDir, file);
-							const content = await fs.promises.readFile(filePath);
-							zip.file(file, content);
-						}));
+						await addDirectoryToZip(zip, sourceDir);
 
 						const zipContent = await zip.generateAsync({ compression: 'DEFLATE', type: 'nodebuffer' });
 						await fs.promises.mkdir(outPath, { recursive: true })
@@ -198,6 +210,25 @@ async function buildForBrowser(targetName, { manifest, noSourceMap, browserName,
 		const result = await esbuild.build(context)
 		fs.writeFileSync(`dist/esbuild-meta-${targetName}.json`, JSON.stringify(result.metafile))
 	}
+}
+
+async function addDirectoryToZip(zip, sourceDir, zipDir = '') {
+	const entries = await fs.promises.readdir(sourceDir, { withFileTypes: true });
+
+	await Promise.all(entries.map(async entry => {
+		const filePath = path.join(sourceDir, entry.name);
+		const zipPath = zipDir ? `${zipDir}/${entry.name}` : entry.name;
+
+		if (entry.isDirectory()) {
+			await addDirectoryToZip(zip, filePath, zipPath);
+			return;
+		}
+
+		if (!entry.isFile()) return;
+
+		const content = await fs.promises.readFile(filePath);
+		zip.file(zipPath, content);
+	}));
 }
 
 let buildTargets = options.browsers;

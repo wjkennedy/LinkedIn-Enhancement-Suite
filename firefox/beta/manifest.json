@@ -41,31 +41,9 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"https://*.reddit.com/*"
+				"https://*.linkedin.com/*"
 			],
-			"all_frames": true,
-			"exclude_matches": [
-				"https://mod.reddit.com/*",
-				"https://ads.reddit.com/*",
-				"https://i.reddit.com/*",
-				"https://m.reddit.com/*",
-				"https://static.reddit.com/*",
-				"https://thumbs.reddit.com/*",
-				"https://blog.reddit.com/*",
-				"https://code.reddit.com/*",
-				"https://about.reddit.com/*",
-				"https://sh.reddit.com/*",
-				"https://*.reddit.com/talk/*",
-				"https://*.reddit.com/chat/*",
-				"https://*.reddit.com/*.compact",
-				"https://*.reddit.com/*.compact?*",
-				"https://*.reddit.com/*.mobile",
-				"https://*.reddit.com/*.mobile?*",
-				"https://*.reddit.com/*.json",
-				"https://*.reddit.com/*.json?*",
-				"https://*.reddit.com/*.json-html",
-				"https://*.reddit.com/*.json-html?*"
-			],
+			"all_frames": false,
 			"js": [
 				"foreground.entry.js"
 			],
@@ -75,9 +53,9 @@
 			"run_at": "document_start"
 		}
 	],
-	"content_security_policy": "default-src 'self'; img-src 'self' data:; connect-src https:; font-src 'self' data:; frame-ancestors https://*.reddit.com",
+	"content_security_policy": "default-src 'self'; img-src 'self' data:; connect-src https:; font-src 'self' data:; frame-ancestors https://*.linkedin.com",
 	"permissions": [
-		"https://*.reddit.com/*",
+		"https://*.linkedin.com/*",
 		"cookies",
 		"identity",
 		"tabs",
@@ -88,7 +66,6 @@
 	],
 	"optional_permissions": [
 		"downloads",
-		"geolocation",
 		"https://publish.twitter.com/oembed",
 		"https://backend.deviantart.com/oembed",
 		"https://api.gyazo.com/api/oembed",

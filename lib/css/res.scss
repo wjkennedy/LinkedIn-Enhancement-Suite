@@ -1,48 +1,6 @@
 @import '../vendor/index';
 @import 'zindex';
-@import 'modules/nightMode';
-@import 'modules/version';
-@import 'modules/commentStyle';
-@import 'modules/showParent';
-@import 'modules/quickMessage';
-@import 'modules/accountSwitcher';
-@import 'modules/betteReddit';
-@import 'modules/commandLine';
-@import 'modules/commentNavigator';
-@import 'modules/commentPreview';
-@import 'modules/commentTools';
-@import 'modules/dashboard';
-@import 'modules/easterEgg';
-@import 'modules/newCommentCount';
-@import 'modules/noParticipation';
-@import 'modules/notifications';
-@import 'modules/filteReddit';
-@import 'modules/hover';
-@import 'modules/keyboardNav';
-@import 'modules/modhelper';
-@import 'modules/neverEndingReddit';
-@import 'modules/orangered';
-@import 'modules/pageNavigator';
-@import 'modules/saveComments';
-@import 'modules/searchHelper';
-@import 'modules/selectedEntry';
-@import 'modules/showImages';
-@import 'modules/sourceSnudown';
-@import 'modules/spoilerTags';
-@import 'modules/styleTweaks';
-@import 'modules/submitIssue';
-@import 'modules/subredditInfo';
-@import 'modules/subredditManager';
-@import 'modules/tableTools';
-@import 'modules/temporaryDropdownLinks';
-@import 'modules/troubleshooter';
-@import 'modules/userbarHider';
-@import 'modules/userInfo';
-@import 'modules/redditUserInfo';
-@import 'modules/userTagger';
-@import 'modules/voteEnhancements';
-@import 'modules/commentQuickCollapse';
-@import 'modules/wheelBrowse';
+@import 'modules/lesFeedSanitizer';
 
 @font-face {
 	font-family: Batch;
@@ -796,12 +754,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 			border-left: none;
 		}
 	}
-}
-
-#beta-help .help-section::after {
-	margin: .5em;
-	display: block;
-	content: 'Since you are using RES with reddit beta, you should also check out /r/RESissues if you experience bugs.';
 }
 
 .pinnable-content.pinned .dismiss-pinnable {

@@ -1,18 +1,18 @@
 {
-  "title": "Reddit Enhancement Suite",
-  "name": "reddit-enhancement-suite",
-  "version": "5.24.9",
-  "description": "A suite of modules that enhance your Reddit browsing experience",
-  "author": "Reddit Enhancement Suite contributors",
+  "title": "LinkedIn Enhancement Suite",
+  "name": "linkedin-enhancement-suite",
+  "version": "0.5.0",
+  "description": "A suite of modules that makes LinkedIn more configurable, filterable, and useful",
+  "author": "LinkedIn Enhancement Suite contributors",
   "license": "GPL-3.0",
   "private": true,
   "type": "module",
-  "homepage": "https://redditenhancementsuite.com",
+  "homepage": "https://github.com/wjkennedy/LinkedIn-Enhancement-Suite",
   "repository": {
     "type": "git",
-    "url": "https://github.com/honestbleeps/Reddit-Enhancement-Suite.git",
-    "username": "honestbleeps",
-    "repository": "Reddit-Enhancement-Suite"
+    "url": "https://github.com/wjkennedy/LinkedIn-Enhancement-Suite.git",
+    "username": "wjkennedy",
+    "repository": "LinkedIn-Enhancement-Suite"
   },
   "scripts": {
     "preinstall": "node -v",
