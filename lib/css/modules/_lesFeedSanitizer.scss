@@ -86,6 +86,36 @@
 	font: inherit;
 }
 
+.les-reader-hidden-post {
+	display: none !important;
+}
+
+.les-reader-load-gate {
+	display: flex;
+	grid-column: 1 / -1;
+	justify-content: center;
+	width: 100%;
+	margin: 16px 0 24px;
+	padding: 16px 0;
+	border-top: 1px solid #d0d7de;
+}
+
+.les-reader-load-gate button {
+	min-height: 32px;
+	padding: 5px 14px;
+	border: 1px solid #0a66c2;
+	border-radius: 16px;
+	background: #fff;
+	color: #0a66c2;
+	font: 600 14px/20px system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	cursor: pointer;
+}
+
+.les-reader-load-gate button:hover,
+.les-reader-load-gate button:focus-visible {
+	background: #e8f3ff;
+}
+
 .les-reading-density-compact,
 .les-reading-density-reader {
 	--les-feed-gap: 8px;
