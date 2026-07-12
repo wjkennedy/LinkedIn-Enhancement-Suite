@@ -20,8 +20,8 @@
 		}
 	},
 	"icons": {
-		"48": "icon48.png",
-		"128": "icon128.png"
+		"48": "beta48.png",
+		"128": "beta128.png"
 	},
 	"page_action": {
 		"default_icon": {
