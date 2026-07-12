@@ -1,0 +1,63 @@
+[
+	{
+		"id": 1,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||platform.linkedin.com/litms/",
+			"resourceTypes": [
+				"script",
+				"xmlhttprequest",
+				"other"
+			]
+		}
+	},
+	{
+		"id": 2,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||linkedin.com/li/track",
+			"resourceTypes": [
+				"xmlhttprequest",
+				"ping",
+				"other"
+			]
+		}
+	},
+	{
+		"id": 3,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||linkedin.com/sensorCollect",
+			"resourceTypes": [
+				"xmlhttprequest",
+				"ping",
+				"other"
+			]
+		}
+	},
+	{
+		"id": 4,
+		"priority": 1,
+		"action": {
+			"type": "block"
+		},
+		"condition": {
+			"urlFilter": "||linkedin.com/realtime/realtimeFrontendClientConnectivityTracking",
+			"resourceTypes": [
+				"xmlhttprequest",
+				"ping",
+				"websocket",
+				"other"
+			]
+		}
+	}
+]

@@ -26,31 +26,9 @@
   "content_scripts": [
     {
       "matches": [
-        "https://*.reddit.com/*"
+        "https://*.linkedin.com/*"
       ],
-      "all_frames": true,
-      "exclude_matches": [
-        "https://mod.reddit.com/*",
-        "https://ads.reddit.com/*",
-        "https://i.reddit.com/*",
-        "https://m.reddit.com/*",
-        "https://static.reddit.com/*",
-        "https://thumbs.reddit.com/*",
-        "https://blog.reddit.com/*",
-        "https://code.reddit.com/*",
-        "https://about.reddit.com/*",
-        "https://sh.reddit.com/*",
-        "https://*.reddit.com/talk/*",
-        "https://*.reddit.com/chat/*",
-        "https://*.reddit.com/*.compact",
-        "https://*.reddit.com/*.compact?*",
-        "https://*.reddit.com/*.mobile",
-        "https://*.reddit.com/*.mobile?*",
-        "https://*.reddit.com/*.json",
-        "https://*.reddit.com/*.json?*",
-        "https://*.reddit.com/*.json-html",
-        "https://*.reddit.com/*.json-html?*"
-      ],
+      "all_frames": false,
       "js": [
         "foreground.entry.js"
       ],
@@ -61,7 +39,7 @@
     }
   ],
   "content_security_policy": {
-    "extension_pages": "default-src 'self'; script-src 'self'; img-src 'self' data:; connect-src https:; font-src 'self' data:; frame-ancestors https://*.reddit.com; script-src-elem 'self'"
+    "extension_pages": "default-src 'self'; script-src 'self'; img-src 'self' data:; connect-src https:; font-src 'self' data:; frame-ancestors https://*.linkedin.com; script-src-elem 'self'"
   },
   "permissions": [
     "tabs",
@@ -72,11 +50,10 @@
     "scripting"
   ],
   "optional_permissions": [
-    "downloads",
-    "geolocation"
+    "downloads"
   ],
   "host_permissions": [
-    "https://*.reddit.com/*"
+    "https://*.linkedin.com/*"
   ],
   "optional_host_permissions":[
     "https://publish.twitter.com/oembed",
@@ -88,7 +65,6 @@
     "https://www.googleapis.com/drive/v3/*",
     "https://*.redd.it/*",
     "https://www.flickr.com/services/oembed",
-    "https://redditenhancementsuite.com/oauth",
     "https://accounts.google.com/signin/oauth",
     "https://www.dropbox.com/oauth2/authorize",
     "https://login.live.com/oauth20_authorize.srf",
@@ -103,7 +79,7 @@
         "options.html"
       ],
       "matches": [
-        "https://*.reddit.com/*"
+        "https://*.linkedin.com/*"
       ]
     }
   ]
