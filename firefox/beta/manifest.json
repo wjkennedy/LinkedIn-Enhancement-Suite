@@ -76,12 +76,5 @@
 		"https://*.redd.it/*",
 		"https://www.flickr.com/services/oembed",
 		"https://embed.bsky.app/oembed"
-	],
-	"web_accessible_resources": [
-		"prompt.html",
-		"prompt.entry.js",
-		"options.css",
-		"options.html",
-		"beta48.png"
 	]
 }

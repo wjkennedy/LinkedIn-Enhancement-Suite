@@ -79,19 +79,5 @@
     "https://www.dropbox.com/oauth2/authorize",
     "https://login.live.com/oauth20_authorize.srf",
     "https://embed.bsky.app/oembed"
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "prompt.html",
-        "prompt.entry.js",
-        "options.css",
-        "options.html",
-        "beta48.png"
-      ],
-      "matches": [
-        "https://*.linkedin.com/*"
-      ]
-    }
   ]
 }
