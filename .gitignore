@@ -78,3 +78,6 @@ $RECYCLE.BIN/
 
 ## NPM package lock ##
 package-lock.json
+
+# Paid publishing source. Keep the Patron guide out of the public repository.
+/insiders-guide-private/

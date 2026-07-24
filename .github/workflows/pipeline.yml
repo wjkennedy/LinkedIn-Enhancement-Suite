@@ -1,4 +1,4 @@
-name: RES Pipeline
+name: LES Pipeline
 
 on:
   push:
@@ -32,14 +32,13 @@ jobs:
         node-version: '22'
     - run: yarn install --frozen-lockfile
 
-    - run: yarn build --browsers=all
+    - run: yarn build --browsers=chrome,edge,firefox,opera
 
     - uses: softprops/action-gh-release@v2
       if: startsWith(github.ref, 'refs/tags/')
       with:
         files: |
           dist/zip/chrome.zip
-          dist/zip/chromebeta.zip
           dist/zip/edge.zip
           dist/zip/firefox.zip
           dist/zip/opera.zip
@@ -57,4 +56,4 @@ jobs:
     - run: yarn install --frozen-lockfile
 
     - run: yarn test
-    - run: yarn build --browsers=all
+    - run: yarn build --browsers=chrome,edge,firefox,opera

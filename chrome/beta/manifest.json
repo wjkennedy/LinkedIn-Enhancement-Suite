@@ -30,6 +30,17 @@
       ],
       "all_frames": false,
       "js": [
+        "probe-monitor.entry.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "https://*.linkedin.com/*"
+      ],
+      "all_frames": false,
+      "js": [
         "foreground.entry.js"
       ],
       "css": [
