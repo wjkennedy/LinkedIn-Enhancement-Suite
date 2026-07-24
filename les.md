@@ -21,6 +21,12 @@ The product promise:
 
 ## The first essential features
 
+### Post Drafts
+
+LinkedIn's single composer draft becomes a local draft library. LES adds multiple named text drafts, in-place editing, one-click capture and restore, and autosave after a draft is loaded into the composer. Draft content remains local, and LES never publishes on the user's behalf.
+
+The MVP and its data boundaries are documented in [docs/post-drafts.md](docs/post-drafts.md).
+
 ### 1. Feed Sanitizer
 
 A rules engine for hiding or collapsing:
@@ -359,4 +365,3 @@ Or, closest to the RES inheritance:
 > **LinkedIn Enhancement Suite gives the network back to the people in it.**
 
 The name is excellent because “LES for LinkedIn” sounds inevitable, familiar, and slightly subversive. The product should feel like something sophisticated LinkedIn users install quietly and then cannot imagine working without.
-

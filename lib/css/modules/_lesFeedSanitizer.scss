@@ -38,6 +38,9 @@
 }
 
 .les-feed-sanitizer-control {
+	position: sticky;
+	top: var(--les-primary-header-height, 52px);
+	z-index: 2147483644;
 	display: flex;
 	align-items: center;
 	justify-content: flex-end;
@@ -50,6 +53,16 @@
 	background: #fff;
 	color: #1f2937;
 	font: 600 11px/1.2 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.les-primary-header-anchor {
+	position: sticky !important;
+	top: 0 !important;
+	z-index: 2147483645 !important;
+}
+
+html.les-page-feed {
+	scroll-padding-top: calc(var(--les-primary-header-height, 52px) + var(--les-control-row-height, 30px) + 8px);
 }
 
 .les-feed-sanitizer-control.les-feed-sanitizer-control-visible {
@@ -87,6 +100,22 @@
 .les-feed-sanitizer-brand:focus-visible {
 	background: #e8f3ff;
 	text-decoration: none;
+}
+
+.les-feed-sanitizer-control-tv {
+	min-height: 24px;
+	padding: 0 5px;
+	border: 1px solid #0a66c2;
+	border-radius: 4px;
+	background: transparent;
+	color: #0a66c2;
+	font: inherit;
+	cursor: pointer;
+}
+
+.les-feed-sanitizer-control-tv:hover,
+.les-feed-sanitizer-control-tv:focus-visible {
+	background: #e8f3ff;
 }
 
 .les-feed-sanitizer-control-mode {
@@ -210,7 +239,8 @@
 	#app > div,
 	main,
 	[data-view-name*='feed'],
-	[data-view-name*='mynetwork'] {
+	[data-view-name*='mynetwork'],
+	[data-sdui-screen] {
 		background-color: #121212 !important;
 		color: #e9e5df !important;
 	}
@@ -223,11 +253,27 @@
 	header li,
 	header button,
 	article,
+	#profile-content,
+	[data-view-name*='profile' i],
+	[data-view-name*='top-card' i],
+	[class*='profile-topcard' i],
+	[class*='pv-top-card' i],
+	[class*='top-card' i],
+	section[aria-label='Primary content'],
+	section[aria-label*='Profile' i],
+	section[aria-label*='profile' i],
 	[role='listitem'],
 	[role='listitem'] > div,
 	[role='listitem'] > div > div,
 	.artdeco-card,
 	[role='dialog'],
+	[data-sdui-screen],
+	[data-floating-ui-portal],
+	[data-floating-ui-portal] > :not([data-floating-ui-focus-guard]),
+	[popover],
+	[role='menu'],
+	[role='listbox'],
+	[role='tooltip'],
 	.comments-comment-item,
 	.comments-reply-item,
 	.comments-comment-box,
@@ -252,10 +298,48 @@
 	[class*='comment-thread' i] *,
 	[data-testid*='comment' i] *,
 	[data-view-name*='comment' i] *,
-	[aria-label='Sidebar'] * {
+	[aria-label='Sidebar'] *,
+	#profile-content *,
+	[data-view-name*='profile' i] *,
+	[data-view-name*='top-card' i] *,
+	[class*='profile-topcard' i] *,
+	[class*='pv-top-card' i] *,
+	[class*='top-card' i] *,
+	section[aria-label='Primary content'] *,
+	section[aria-label*='Profile' i] *,
+	section[aria-label*='profile' i] *,
+	[data-sdui-screen] * {
 		background-color: #1d2226 !important;
 		border-color: #3b444c !important;
 		color: #e9e5df !important;
+		-webkit-text-fill-color: #e9e5df !important;
+	}
+
+	[data-floating-ui-portal] :is(p, h1, h2, h3, h4, h5, h6, span, label, button),
+	[popover] :is(p, h1, h2, h3, h4, h5, h6, span, label, button),
+	[role='menu'] :is(p, h1, h2, h3, h4, h5, h6, span, label, button),
+	[role='listbox'] :is(p, h1, h2, h3, h4, h5, h6, span, label, button),
+	[role='tooltip'] :is(p, h1, h2, h3, h4, h5, h6, span, label, button) {
+		color: #e9e5df !important;
+		-webkit-text-fill-color: #e9e5df !important;
+	}
+
+	[data-floating-ui-portal] a,
+	[popover] a,
+	[role='menu'] a,
+	[role='listbox'] a,
+	[role='tooltip'] a {
+		color: #d9ecff !important;
+	}
+
+	[data-floating-ui-portal] a:hover,
+	[data-floating-ui-portal] button:hover,
+	[popover] a:hover,
+	[popover] button:hover,
+	[role='menu'] a:hover,
+	[role='menu'] button:hover,
+	[role='listbox'] [role='option']:hover {
+		background-color: #2a343c !important;
 	}
 
 	[data-testid*='skip' i],
@@ -328,7 +412,7 @@
 	a[href*='/company/'] svg,
 	a[href*='/school/'] svg,
 	a[href*='/profile/'] svg {
-		fill: currentColor;
+		fill: currentcolor;
 	}
 
 	input,
@@ -384,7 +468,20 @@ html.les-night-mode a[href*='/school/'] svg,
 html.les-night-mode a[href*='/profile/'] svg,
 html.les-night-mode [aria-label*='Profile'] svg {
 	color: #d9ecff !important;
-	fill: currentColor !important;
+	fill: currentcolor !important;
+}
+
+html.les-night-mode #profile-content svg,
+html.les-night-mode [data-view-name*='profile' i] svg,
+html.les-night-mode [data-view-name*='top-card' i] svg,
+html.les-night-mode [class*='profile-topcard' i] svg,
+html.les-night-mode [class*='pv-top-card' i] svg,
+html.les-night-mode [class*='top-card' i] svg,
+html.les-night-mode section[aria-label='Primary content'] svg,
+html.les-night-mode section[aria-label*='Profile' i] svg,
+html.les-night-mode section[aria-label*='profile' i] svg {
+	color: #d9ecff !important;
+	fill: currentcolor !important;
 }
 
 html.les-night-mode input::placeholder,
@@ -424,6 +521,111 @@ html.les-night-mode textarea::placeholder {
 	border-color: #56616a;
 	background: #252b30;
 	color: #c7d6e5;
+}
+
+.les-night-mode .les-feed-sanitizer-control-tv {
+	border-color: #8ec5ff;
+	color: #8ec5ff;
+}
+
+.les-night-mode .les-feed-sanitizer-control-tv:hover,
+.les-night-mode .les-feed-sanitizer-control-tv:focus-visible {
+	background: #253b4a;
+}
+
+.les-tv-viewer {
+	position: fixed;
+	inset: 0;
+	z-index: 2147483647;
+	display: grid;
+	grid-template-rows: auto minmax(0, 1fr) auto;
+	width: 100vw;
+	height: 100vh;
+	background: #101418;
+	color: #f3f2ef;
+	font: 14px/1.4 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.les-tv-viewer > header,
+.les-tv-viewer > footer {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 16px;
+	border: 0;
+	background: #1d2226;
+	color: inherit;
+}
+
+.les-tv-viewer > header strong {
+	font-size: 16px;
+}
+
+.les-tv-position {
+	margin-right: auto;
+	color: #b7c3cc;
+}
+
+.les-tv-viewer > footer {
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.les-tv-viewer button,
+.les-tv-viewer a {
+	min-height: 32px;
+	padding: 5px 10px;
+	border: 1px solid #8ec5ff;
+	border-radius: 4px;
+	background: transparent;
+	color: #8ec5ff;
+	font: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.les-tv-viewer button:hover,
+.les-tv-viewer button:focus-visible,
+.les-tv-viewer a:hover,
+.les-tv-viewer a:focus-visible {
+	background: #253b4a;
+}
+
+.les-tv-stage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 0;
+	padding: 24px;
+	overflow: auto;
+}
+
+.les-tv-stage h2,
+.les-tv-stage p {
+	width: min(100%, 960px);
+	margin: 0 0 12px;
+}
+
+.les-tv-stage h2 {
+	font-size: 18px;
+}
+
+.les-tv-kind {
+	color: #fda4af;
+	font-size: 11px;
+	font-weight: 700;
+}
+
+.les-tv-stage video {
+	width: min(100%, 1100px);
+	max-height: 65vh;
+	margin-top: 8px;
+	background: #000;
+}
+
+.les-tv-unavailable {
+	color: #b7c3cc;
 }
 
 .les-reader-load-gate {
@@ -624,8 +826,18 @@ html.les-night-mode textarea::placeholder {
 			minmax(0, var(--les-reader-column-one, 33%))
 			minmax(0, var(--les-reader-column-two, 34%))
 			minmax(0, var(--les-reader-column-three, 33%)) !important;
-		gap: var(--les-column-gap) !important;
+		grid-auto-rows: 8px !important;
+		gap: 8px var(--les-column-gap) !important;
 		align-items: start !important;
+	}
+
+	.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content > .les-reader-grid-item {
+		grid-column: var(--les-reader-grid-column) !important;
+		grid-row-end: span var(--les-reader-row-span, 32) !important;
+		margin-bottom: 0 !important;
+		content-visibility: auto;
+		contain-intrinsic-size: auto 520px;
+		overflow-anchor: auto;
 	}
 
 	.mn-connections__list,
@@ -697,6 +909,7 @@ html.les-night-mode textarea::placeholder {
 
 	.les-feed-composer {
 		grid-column: 1 / -1 !important;
+		grid-row-end: auto !important;
 		order: -1 !important;
 		justify-self: center !important;
 		width: min(100%, 960px) !important;
@@ -746,6 +959,15 @@ html.les-night-mode textarea::placeholder {
 
 		.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content {
 			grid-template-columns: minmax(0, 1fr) !important;
+			grid-auto-rows: auto !important;
+			gap: var(--les-column-gap) !important;
+		}
+
+		.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content > .les-reader-grid-item {
+			grid-column: 1 !important;
+			grid-row-end: auto !important;
+			content-visibility: visible;
+			contain-intrinsic-size: none;
 		}
 
 		.les-reader-column-resizer {

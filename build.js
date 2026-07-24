@@ -44,6 +44,8 @@ const targets = {
 	},
 }
 
+const releaseTargets = ['chrome', 'edge', 'opera', 'firefox'];
+
 const options = commander.program
 	.option('--watch', 'Enable watch mode')
 	.option('--zip', 'Enable zipping')
@@ -96,6 +98,9 @@ async function buildForBrowser(targetName, { manifest, noSourceMap, browserName,
 		entryPoints: {
 			'foreground.entry': './lib/foreground.entry.js',
 			'background.entry': './lib/background.entry.js',
+			...(browserName === 'firefox' ? {} : {
+				'probe-monitor.entry': './lib/probe-monitor.entry.js',
+			}),
 			'options.entry': './lib/options/options.entry.js',
 			'prompt.entry': './lib/environment/background/permissions/prompt.entry.js',
 			manifest,
@@ -234,6 +239,6 @@ async function addDirectoryToZip(zip, sourceDir, zipDir = '') {
 }
 
 let buildTargets = options.browsers;
-// browser option `all` converts to all available targets
-buildTargets = [...new Set(buildTargets.replace('all', Object.keys(targets).join(',')).split(','))];
+// Browser option `all` selects the supported release targets. Beta is explicit.
+buildTargets = [...new Set(buildTargets.replace('all', releaseTargets.join(',')).split(','))];
 buildTargets.map(v => buildForBrowser(v, targets[v]));
