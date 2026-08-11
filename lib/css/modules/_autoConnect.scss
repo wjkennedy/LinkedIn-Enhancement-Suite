@@ -1,0 +1,232 @@
+.les-auto-connect-manager {
+	display: flex;
+	position: fixed;
+	z-index: 999;
+	top: calc(var(--les-primary-header-height, 52px) + 16px);
+	right: 16px;
+	flex-direction: column;
+	width: min(560px, calc(100vw - 32px));
+	max-height: calc(100vh - var(--les-primary-header-height, 52px) - 32px);
+	overflow: hidden;
+	border: 1px solid #d6d6d6;
+	border-radius: 14px;
+	background: #fff;
+	box-shadow: 0 8px 24px rgb(0 0 0 / 12%);
+	color: #191919;
+	font: 14px/1.45 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+	&[hidden] {
+		display: none !important;
+	}
+
+	&.is-collapsed {
+		width: min(360px, calc(100vw - 32px));
+
+		header {
+			border-bottom: 0;
+		}
+
+		.les-auto-connect-intro,
+		.les-auto-connect-status,
+		.les-auto-connect-list,
+		footer,
+		header [data-action='refresh'] {
+			display: none;
+		}
+	}
+
+	header,
+	footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 14px 18px;
+		background: #fff;
+	}
+
+	.les-auto-connect-intro {
+		margin: 0;
+		padding: 10px 18px 0;
+		color: #666;
+		font-size: 13px;
+	}
+
+	header {
+		border-bottom: 1px solid #e8e8e8;
+
+		> div {
+			display: grid;
+			gap: 2px;
+		}
+
+		strong {
+			font-size: 17px;
+		}
+
+		span {
+			color: #666;
+			font-size: 12px;
+		}
+
+		.les-auto-connect-header-actions {
+			display: flex;
+			gap: 8px;
+		}
+	}
+
+	button {
+		min-height: 34px;
+		padding: 6px 13px;
+		border: 1px solid #666;
+		border-radius: 18px;
+		background: transparent;
+		color: #3f3f3f;
+		cursor: pointer;
+		font: inherit;
+		font-size: 13px;
+		font-weight: 600;
+
+		&:disabled {
+			cursor: wait;
+		opacity: 0.6;
+		}
+	}
+
+	[data-action='close'] {
+		width: 34px;
+		min-width: 34px;
+		padding: 0;
+		border-color: transparent;
+		font-size: 24px;
+		font-weight: 400;
+	}
+
+	button:hover,
+	button:focus-visible {
+		background: #f3f3f3;
+		box-shadow: inset 0 0 0 1px currentcolor;
+	}
+
+	.les-auto-connect-primary {
+		border-color: #0a66c2;
+		background: #0a66c2;
+		color: #fff;
+	}
+}
+
+.les-auto-connect-status {
+		min-height: 20px;
+		padding: 10px 18px;
+		color: #666;
+		font-size: 12px;
+	}
+
+.les-auto-connect-list {
+	display: grid;
+	gap: 6px;
+	overflow: auto;
+	min-height: 0;
+	padding: 0 18px 14px;
+}
+
+.les-auto-connect-item {
+	display: grid;
+	grid-template-columns: minmax(150px, 1fr) auto;
+	gap: 6px 12px;
+	padding: 10px 12px;
+	border: 1px solid #e1e1e1;
+	border-radius: 8px;
+	background: #fff;
+
+	a {
+		min-width: 0;
+		overflow: hidden;
+		color: #0a66c2;
+		font-weight: 700;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	small {
+		align-self: center;
+		color: #666;
+		font-size: 11px;
+		text-align: right;
+	}
+
+	textarea {
+		grid-column: 1 / -1;
+		width: 100%;
+		min-height: 48px;
+		padding: 7px 9px;
+		border: 1px solid #c7c7c7;
+		border-radius: 6px;
+		background: #fff;
+		color: #191919;
+		font: inherit;
+		resize: vertical;
+	}
+
+	.les-auto-connect-item-actions {
+		display: flex;
+		grid-column: 1 / -1;
+		justify-content: flex-end;
+		gap: 8px;
+	}
+
+	&:has(textarea:focus) {
+		border-color: #0a66c2;
+	}
+
+	&:has(textarea:placeholder-shown) {
+		background: #fff;
+	}
+
+	.les-auto-connect-item-actions button {
+		min-height: 30px;
+		padding: 4px 10px;
+		font-size: 12px;
+	}
+
+	/* Keep the summary metadata compact when LinkedIn narrows the panel. */
+	@media (width <= 520px) {
+		grid-template-columns: 1fr;
+
+		small {
+			text-align: left;
+		}
+	}
+
+	/* Legacy metadata styling retained for pages that inject a nested span. */
+	> span {
+		color: #666;
+		font-size: 11px;
+	}
+}
+
+.les-night-mode {
+	.les-auto-connect-manager,
+	.les-auto-connect-manager header,
+	.les-auto-connect-manager footer,
+	.les-auto-connect-item {
+		border-color: #424b52;
+		background: #1d2226;
+		color: #f3f2ef;
+	}
+
+	.les-auto-connect-manager header span,
+	.les-auto-connect-status,
+	.les-auto-connect-item small {
+		color: #b7c3cc;
+	}
+}
+
+@media (width <= 680px) {
+	.les-auto-connect-manager {
+		right: 8px;
+		width: calc(100vw - 16px);
+		max-height: calc(100vh - var(--les-primary-header-height, 52px) - 24px);
+		border-radius: 10px;
+	}
+}

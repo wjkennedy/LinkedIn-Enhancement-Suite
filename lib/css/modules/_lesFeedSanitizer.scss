@@ -102,22 +102,6 @@ html.les-page-feed {
 	text-decoration: none;
 }
 
-.les-feed-sanitizer-control-tv {
-	min-height: 24px;
-	padding: 0 5px;
-	border: 1px solid #0a66c2;
-	border-radius: 4px;
-	background: transparent;
-	color: #0a66c2;
-	font: inherit;
-	cursor: pointer;
-}
-
-.les-feed-sanitizer-control-tv:hover,
-.les-feed-sanitizer-control-tv:focus-visible {
-	background: #e8f3ff;
-}
-
 .les-feed-sanitizer-control-mode {
 	display: inline-flex;
 	align-items: center;
@@ -143,27 +127,32 @@ html.les-page-feed {
 	font-size: 11px;
 }
 
-.les-feed-sanitizer-scan-report,
-.les-feed-sanitizer-telemetry-report {
-	padding: 2px 4px;
-	border: 1px solid #b8c4ce;
-	border-radius: 4px;
-	color: #536471;
-	font-size: 10px;
-	line-height: 1;
-	white-space: nowrap;
+// LinkedIn's global settings styles can hide or restyle native checkbox
+// controls. Keep the two user-facing feed controls visible in night mode.
+html.les-night-mode .les-feed-sanitizer-control-toggle,
+html.les-night-mode .les-feed-sanitizer-control-translate {
+	display: inline-flex !important;
+	align-items: center !important;
+	visibility: visible !important;
 }
 
-.les-feed-sanitizer-scan-report.les-feed-sanitizer-scan-detected {
-	border-color: #b45309;
-	background: #fff7ed;
-	color: #9a3412;
+html.les-night-mode .les-feed-sanitizer-control-toggle input,
+html.les-night-mode .les-feed-sanitizer-control-translate input {
+	display: inline-block !important;
+	position: static !important;
+	width: auto !important;
+	height: auto !important;
+	margin: 0 !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	appearance: auto !important;
 }
 
-.les-feed-sanitizer-telemetry-report.les-feed-sanitizer-telemetry-detected {
-	border-color: #15803d;
-	background: #f0fdf4;
-	color: #166534;
+html.les-night-mode .les-feed-sanitizer-control-toggle span,
+html.les-night-mode .les-feed-sanitizer-control-translate span {
+	display: inline !important;
+	visibility: visible !important;
+	color: #e9e5df !important;
 }
 
 .les-feed-sanitizer-control-night-mode {
@@ -219,20 +208,105 @@ html.les-page-feed {
 	line-height: 1;
 }
 
-.les-weeds-mode .les-weeds-hidden {
-	display: none !important;
+/* LinkedIn's generated component styles shadow the global surface token with
+ * light-only local variables. Bridge those variables back to the LES night
+ * palette at a specificity that also defeats the authored important rules. */
+html.les-night-mode ._45cd63c2,
+html.les-night-mode ._8c5c25e0 {
+	// stylelint-disable-next-line custom-property-pattern -- LinkedIn-generated token
+	--_7ef6f4f2: var(--color-background) !important;
+	// stylelint-disable-next-line custom-property-pattern -- LinkedIn-generated token
+	--_1a5bda9d: var(--color-background) !important;
+
+	background-color: var(--color-background) !important;
 }
 
-.les-weeds-mode .les-weeds-match {
-	display: block !important;
-	max-height: none !important;
-	overflow: visible !important;
-	opacity: 1 !important;
+html.les-night-mode hr._6ffbe27c {
+	border-color: var(--color-border-faint) !important;
 }
 
-.les-night-mode {
+	.les-night-mode {
 	color-scheme: dark;
 	background: #121212;
+
+	--les-night-mode-surface: rgb(59 68 76);
+
+	/* LinkedIn now puts most of its palette on the body. Override the
+	 * token graph there so late-mounted and otherwise unclassed surfaces
+	 * inherit dark values instead of reverting to the light theme. */
+	body {
+		--color-background: #121212 !important;
+		--color-background-container: #1d2226 !important;
+		--color-background-container-tint: #252b30 !important;
+		--color-background-canvas: #121212 !important;
+		--color-background-canvas-mobile: #121212 !important;
+		--color-background-canvas-tint: #1d2226 !important;
+		--color-background-offset: #1d2226 !important;
+		--color-background-faint: rgb(255 255 255 / 0.08) !important;
+		--color-background-transparent-hover: rgb(255 255 255 / 0.08) !important;
+		--color-background-transparent-active: rgb(255 255 255 / 0.12) !important;
+		--color-background-disabled: rgb(255 255 255 / 0.12) !important;
+		--color-border: rgb(255 255 255 / 0.45) !important;
+		--color-border-active: rgb(255 255 255 / 0.7) !important;
+		--color-border-faint: rgb(255 255 255 / 0.14) !important;
+		--color-border-faint-active: rgb(255 255 255 / 0.28) !important;
+		--color-border-subtle: rgb(255 255 255 / 0.28) !important;
+		--color-border-hover: rgb(255 255 255 / 0.7) !important;
+		--color-text: #f3f2ef !important;
+		--color-text-active: #fff !important;
+		--color-text-hover: #fff !important;
+		--color-text-meta: #b7c3cc !important;
+		--color-text-meta-active: #f3f2ef !important;
+		--color-text-meta-hover: #fff !important;
+		--color-text-solid: #e9e5df !important;
+		--color-text-solid-low-emphasis: #b7c3cc !important;
+		--color-label: #e9e5df !important;
+		--color-label-active: #fff !important;
+		--color-label-hover: #fff !important;
+		--color-label-disabled: #8a949c !important;
+		--color-icon: #c7d6e5 !important;
+		--color-icon-active: #fff !important;
+		--color-icon-hover: #fff !important;
+		--color-nav-icon: #b7c3cc !important;
+		--color-nav-icon-active: #fff !important;
+		--color-nav-label: #b7c3cc !important;
+		--color-nav-label-active: #fff !important;
+		--color-link: #8ec5ff !important;
+		--color-link-active: #b8dcff !important;
+		--color-link-hover: #b8dcff !important;
+		--color-link-visited: #c8a1f6 !important;
+		--color-action: #70b5f9 !important;
+		--color-action-active: #b8dcff !important;
+		--color-action-hover: #b8dcff !important;
+		--voyager-color-background-container-tint-2: #252b30 !important;
+		--voyager-color-background-input-search: #252b30 !important;
+		--voyager-color-background-input-search-active: #30363b !important;
+		--voyager-color-background-comment: #252b30 !important;
+		--voyager-color-background-comment-v2: #252b30 !important;
+		--messenger-color-background-input-message: #252b30 !important;
+		--messenger-color-background-input-message-active: #30363b !important;
+		--image-filter: brightness(.82) !important;
+	--acttachment-icon-filter: brightness(.82) !important;
+
+	background-color: #121212 !important;
+		color: #f3f2ef !important;
+	}
+
+	/* Last-resort coverage for LinkedIn wrappers with inline light colors.
+	 * LES-owned surfaces opt out so their controls remain legible and
+	 * predictable. */
+	body > :not([data-les-ignore='true'], .les-feed-sanitizer-control, .les-post-drafts-manager),
+	body > :not([data-les-ignore='true'], .les-feed-sanitizer-control, .les-post-drafts-manager) *:not(.les-feed-sanitizer-control, .les-feed-sanitizer-control *, .les-post-drafts-manager, .les-post-drafts-manager *) {
+		border-color: var(--color-border-faint) !important;
+		color: var(--color-text) !important;
+	}
+
+	body [style*='background-color: white'],
+	body [style*='background-color: rgb(255'],
+	body [style*='background: white'],
+	body [style*='background: rgb(255'] {
+		background-color: #1d2226 !important;
+	}
 
 	body,
 	#app,
@@ -267,6 +341,18 @@ html.les-page-feed {
 	[role='listitem'] > div > div,
 	.artdeco-card,
 	[role='dialog'],
+	.share-box,
+	.share-creation-state,
+	.share-creation-state__content-scrollable,
+	.share-creation-state__text-editor,
+	.share-creation-state__bottom,
+	.share-creation-state__footer,
+	.share-creation-state__additional-toolbar,
+	.artdeco-modal__header,
+	.artdeco-modal__content,
+	.editor-container,
+	.editor-content,
+	.ql-editor,
 	[data-sdui-screen],
 	[data-floating-ui-portal],
 	[data-floating-ui-portal] > :not([data-floating-ui-focus-guard]),
@@ -299,6 +385,20 @@ html.les-page-feed {
 	[data-testid*='comment' i] *,
 	[data-view-name*='comment' i] *,
 	[aria-label='Sidebar'] *,
+	.share-box :is(
+		.share-creation-state__content-scrollable,
+		.share-creation-state__text-editor,
+		.share-creation-state__bottom,
+		.share-creation-state__footer,
+		.share-creation-state__additional-toolbar,
+		.artdeco-carousel,
+		.artdeco-carousel__heading,
+		.artdeco-carousel__content,
+		.artdeco-carousel__item-container,
+		.editor-container,
+		.editor-content,
+		.ql-editor
+	),
 	#profile-content *,
 	[data-view-name*='profile' i] *,
 	[data-view-name*='top-card' i] *,
@@ -311,6 +411,17 @@ html.les-page-feed {
 	[data-sdui-screen] * {
 		background-color: #1d2226 !important;
 		border-color: #3b444c !important;
+		color: #e9e5df !important;
+		-webkit-text-fill-color: #e9e5df !important;
+	}
+
+	.share-box :is(
+		.ql-editor,
+		.share-unified-settings-entry-button,
+		.share-promoted-detour-button,
+		.share-actions__scheduled-post-btn,
+		.share-creation-state__writing-assistant-premium-button
+	) {
 		color: #e9e5df !important;
 		-webkit-text-fill-color: #e9e5df !important;
 	}
@@ -357,28 +468,22 @@ html.les-page-feed {
 		-webkit-text-fill-color: #d9ecff !important;
 	}
 
+	/* LinkedIn uses this light surface on several inline-styled and
+	 * dynamically-rendered wrappers that do not have stable class names. */
+	[style*='rgb(233, 229, 223)'],
+	[style*='rgb(233 229 223)'],
+	[style*='rgb(233,229,223)'],
+	[style*='rgba(233, 229, 223, 1)'],
+	[style*='#e9e5df'],
+	[style*='#E9E5DF'] {
+		background-color: var(--les-night-mode-surface) !important;
+		border-color: var(--les-night-mode-surface) !important;
+	}
+
 	.les-feed-sanitizer-control {
 		border-color: #3b444c;
 		background-color: #1d2226;
 		color: #e9e5df;
-	}
-
-	.les-feed-sanitizer-scan-report,
-	.les-feed-sanitizer-telemetry-report {
-		border-color: #56616a;
-		color: #cbd5dc;
-	}
-
-	.les-feed-sanitizer-scan-report.les-feed-sanitizer-scan-detected {
-		border-color: #f59e0b;
-		background: #4a3212;
-		color: #fed7aa;
-	}
-
-	.les-feed-sanitizer-telemetry-report.les-feed-sanitizer-telemetry-detected {
-		border-color: #4ade80;
-		background: #143522;
-		color: #bbf7d0;
 	}
 
 	p,
@@ -523,111 +628,6 @@ html.les-night-mode textarea::placeholder {
 	color: #c7d6e5;
 }
 
-.les-night-mode .les-feed-sanitizer-control-tv {
-	border-color: #8ec5ff;
-	color: #8ec5ff;
-}
-
-.les-night-mode .les-feed-sanitizer-control-tv:hover,
-.les-night-mode .les-feed-sanitizer-control-tv:focus-visible {
-	background: #253b4a;
-}
-
-.les-tv-viewer {
-	position: fixed;
-	inset: 0;
-	z-index: 2147483647;
-	display: grid;
-	grid-template-rows: auto minmax(0, 1fr) auto;
-	width: 100vw;
-	height: 100vh;
-	background: #101418;
-	color: #f3f2ef;
-	font: 14px/1.4 system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-}
-
-.les-tv-viewer > header,
-.les-tv-viewer > footer {
-	display: flex;
-	align-items: center;
-	gap: 8px;
-	padding: 12px 16px;
-	border: 0;
-	background: #1d2226;
-	color: inherit;
-}
-
-.les-tv-viewer > header strong {
-	font-size: 16px;
-}
-
-.les-tv-position {
-	margin-right: auto;
-	color: #b7c3cc;
-}
-
-.les-tv-viewer > footer {
-	justify-content: center;
-	flex-wrap: wrap;
-}
-
-.les-tv-viewer button,
-.les-tv-viewer a {
-	min-height: 32px;
-	padding: 5px 10px;
-	border: 1px solid #8ec5ff;
-	border-radius: 4px;
-	background: transparent;
-	color: #8ec5ff;
-	font: inherit;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.les-tv-viewer button:hover,
-.les-tv-viewer button:focus-visible,
-.les-tv-viewer a:hover,
-.les-tv-viewer a:focus-visible {
-	background: #253b4a;
-}
-
-.les-tv-stage {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	min-width: 0;
-	padding: 24px;
-	overflow: auto;
-}
-
-.les-tv-stage h2,
-.les-tv-stage p {
-	width: min(100%, 960px);
-	margin: 0 0 12px;
-}
-
-.les-tv-stage h2 {
-	font-size: 18px;
-}
-
-.les-tv-kind {
-	color: #fda4af;
-	font-size: 11px;
-	font-weight: 700;
-}
-
-.les-tv-stage video {
-	width: min(100%, 1100px);
-	max-height: 65vh;
-	margin-top: 8px;
-	background: #000;
-}
-
-.les-tv-unavailable {
-	color: #b7c3cc;
-}
-
 .les-reader-load-gate {
 	display: flex;
 	grid-column: 1 / -1;
@@ -658,8 +658,10 @@ html.les-night-mode textarea::placeholder {
 	display: none !important;
 }
 
-.les-reading-density-compact,
-.les-reading-density-reader {
+.les-page-feed.les-reading-density-compact,
+.les-page-network.les-reading-density-compact,
+.les-page-feed.les-reading-density-reader,
+.les-page-network.les-reading-density-reader {
 	--les-feed-gap: 8px;
 	--les-card-padding: 8px;
 	--les-post-text-size: 13px;
@@ -715,7 +717,7 @@ html.les-night-mode textarea::placeholder {
 	}
 }
 
-.les-reading-density-reader {
+.les-page-feed.les-reading-density-reader {
 	--les-feed-gap: 6px;
 	--les-card-padding: 6px;
 	--les-post-text-size: 13px;
@@ -790,15 +792,6 @@ html.les-night-mode textarea::placeholder {
 		margin-left: 0 !important;
 	}
 
-	.les-page-feed.les-reading-density-reader #workspace > div > div > section {
-		grid-column: 1 / -1 !important;
-		width: 90% !important;
-		max-width: 90% !important;
-		justify-self: center !important;
-		margin-right: auto !important;
-		margin-left: auto !important;
-	}
-
 	.les-reader-primary-content {
 		grid-column: 1 / -1 !important;
 		width: 90% !important;
@@ -808,38 +801,6 @@ html.les-night-mode textarea::placeholder {
 		margin-left: auto !important;
 	}
 
-	.les-page-feed .scaffold-finite-scroll__content,
-	.les-page-network #workspace [data-testid='lazy-column'][data-component-type='LazyColumn']:has(> section) {
-		box-sizing: border-box !important;
-		width: calc(100vw - 32px) !important;
-		max-width: calc(100vw - 32px) !important;
-		margin-right: auto !important;
-		margin-left: auto !important;
-		overflow-x: clip !important;
-	}
-
-	.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content {
-		width: min(94vw, calc(100vw - 32px)) !important;
-		max-width: min(94vw, calc(100vw - 32px)) !important;
-		display: grid !important;
-		grid-template-columns:
-			minmax(0, var(--les-reader-column-one, 33%))
-			minmax(0, var(--les-reader-column-two, 34%))
-			minmax(0, var(--les-reader-column-three, 33%)) !important;
-		grid-auto-rows: 8px !important;
-		gap: 8px var(--les-column-gap) !important;
-		align-items: start !important;
-	}
-
-	.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content > .les-reader-grid-item {
-		grid-column: var(--les-reader-grid-column) !important;
-		grid-row-end: span var(--les-reader-row-span, 32) !important;
-		margin-bottom: 0 !important;
-		content-visibility: auto;
-		contain-intrinsic-size: auto 520px;
-		overflow-anchor: auto;
-	}
-
 	.mn-connections__list,
 	.mn-pymk-list,
 	.mn-community-summary__entity-list,
@@ -847,7 +808,6 @@ html.les-night-mode textarea::placeholder {
 	[data-view-name*='connections'] ul,
 	[data-view-name*='mynetwork'] ul,
 	[role='list'],
-	.scaffold-finite-scroll__content,
 	.les-page-network #workspace [data-testid='lazy-column'][data-component-type='LazyColumn']:has(> section) {
 		display: grid !important;
 		grid-template-columns: repeat(var(--les-column-count), minmax(0, 1fr)) !important;
@@ -957,22 +917,83 @@ html.les-night-mode textarea::placeholder {
 		--les-column-count: 1;
 		--les-page-gutter: 8px;
 
-		.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content {
-			grid-template-columns: minmax(0, 1fr) !important;
-			grid-auto-rows: auto !important;
-			gap: var(--les-column-gap) !important;
-		}
-
-		.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content > .les-reader-grid-item {
-			grid-column: 1 !important;
-			grid-row-end: auto !important;
-			content-visibility: visible;
-			contain-intrinsic-size: none;
-		}
-
 		.les-reader-column-resizer {
 			display: none;
 		}
 
+	}
+}
+
+.les-page-feed .scaffold-finite-scroll__content,
+.les-page-network #workspace [data-testid='lazy-column'][data-component-type='LazyColumn']:has(> section) {
+	box-sizing: border-box !important;
+	width: calc(100vw - 32px) !important;
+	max-width: calc(100vw - 32px) !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+	overflow-x: clip !important;
+}
+
+// My Network has several wrappers that change between desktop and reflow
+// layouts. Center the actual content column independently of those wrappers.
+.les-page-network {
+	.scaffold-layout__content,
+	.scaffold-layout__main,
+	#workspace,
+	#workspace > div,
+	#workspace > div > div,
+	[data-testid='lazy-column'][data-component-type='LazyColumn'] {
+		box-sizing: border-box !important;
+		margin-right: auto !important;
+		margin-left: auto !important;
+	}
+
+	.scaffold-layout__main,
+	[data-testid='lazy-column'][data-component-type='LazyColumn'] {
+		width: min(100%, 1128px) !important;
+		max-width: 1128px !important;
+	}
+
+	#workspace,
+	#workspace > div,
+	#workspace > div > div {
+		width: 100% !important;
+		max-width: none !important;
+	}
+}
+
+.les-page-feed.les-reading-density-reader #workspace > div > div > section {
+	grid-column: 1 / -1 !important;
+	width: 90% !important;
+	max-width: 90% !important;
+	justify-self: center !important;
+	margin-right: auto !important;
+	margin-left: auto !important;
+}
+
+.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content {
+	width: min(94vw, calc(100vw - 32px)) !important;
+	max-width: min(94vw, calc(100vw - 32px)) !important;
+	display: grid !important;
+	grid-template-columns:
+		minmax(0, var(--les-reader-column-one, 33fr))
+		minmax(0, var(--les-reader-column-two, 34fr))
+		minmax(0, var(--les-reader-column-three, 33fr)) !important;
+	grid-auto-rows: auto !important;
+	gap: 8px var(--les-column-gap) !important;
+	align-items: start !important;
+}
+
+.les-feed-layout-multi-column:not(.les-reading-density-reader) .scaffold-finite-scroll__content {
+	display: grid !important;
+	grid-template-columns: repeat(var(--les-column-count), minmax(0, 1fr)) !important;
+	gap: var(--les-column-gap) !important;
+	align-items: start !important;
+}
+
+@media (width <= 900px) {
+	.les-page-feed.les-reading-density-reader .scaffold-finite-scroll__content {
+		grid-template-columns: minmax(0, 1fr) !important;
+		gap: var(--les-column-gap) !important;
 	}
 }
