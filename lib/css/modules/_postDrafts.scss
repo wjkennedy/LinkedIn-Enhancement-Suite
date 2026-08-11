@@ -144,22 +144,34 @@
 }
 
 .les-post-drafts-manager {
-	z-index: 2147483646;
-	position: fixed;
-	inset: 0;
-	display: grid;
+	z-index: 2147483646 !important;
+	position: fixed !important;
+	inset: 0 !important;
+	display: grid !important;
 	place-items: center;
 	padding: 24px;
 	background: rgb(0 0 0 / 48%);
 	color: #191919;
 	font: 14px/1.45 -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 	backdrop-filter: blur(2px);
+	isolation: isolate;
+	pointer-events: auto !important;
+	user-select: text !important;
+
+	input,
+	textarea,
+	button {
+		pointer-events: auto !important;
+		user-select: text !important;
+	}
 
 	&[hidden] {
-		display: none;
+		display: none !important;
 	}
 
 	> section {
+		z-index: 1;
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
