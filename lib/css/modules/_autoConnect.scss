@@ -139,7 +139,8 @@
 	border-radius: 8px;
 	background: #fff;
 
-	a {
+	a,
+	.les-auto-connect-item-name {
 		min-width: 0;
 		overflow: hidden;
 		color: #0a66c2;
@@ -155,6 +156,44 @@
 		text-align: right;
 	}
 
+	.les-auto-connect-item-meta {
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		gap: 8px;
+	}
+
+	.les-auto-connect-item-details {
+		display: flex;
+		grid-column: 1 / -1;
+		flex-wrap: wrap;
+		gap: 3px 10px;
+		color: #666;
+		font-size: 11px;
+
+		span + span {
+			padding-left: 10px;
+			border-left: 1px solid #d6d6d6;
+		}
+	}
+
+	.les-auto-connect-item-status {
+		padding: 2px 7px;
+		border-radius: 10px;
+		background: #e8e8e8;
+		color: #4b4b4b;
+		font-size: 11px;
+		font-weight: 700;
+		text-transform: capitalize;
+	}
+
+	.les-auto-connect-item-error {
+		grid-column: 1 / -1;
+		margin: 0;
+		color: #b24020;
+		font-size: 12px;
+	}
+
 	textarea {
 		grid-column: 1 / -1;
 		width: 100%;
@@ -166,6 +205,11 @@
 		color: #191919;
 		font: inherit;
 		resize: vertical;
+
+		&:disabled {
+			resize: none;
+			opacity: 0.7;
+		}
 	}
 
 	.les-auto-connect-item-actions {
@@ -187,6 +231,28 @@
 		min-height: 30px;
 		padding: 4px 10px;
 		font-size: 12px;
+	}
+
+	&[data-status='sending'] {
+		border-color: #0a66c2;
+	}
+
+	&[data-status='sent'] {
+		border-color: #2f7d32;
+
+		.les-auto-connect-item-status {
+			background: #e7f5e8;
+			color: #256629;
+		}
+	}
+
+	&[data-status='failed'] {
+		border-color: #b24020;
+
+		.les-auto-connect-item-status {
+			background: #fce8e3;
+			color: #8f2d14;
+		}
 	}
 
 	/* Keep the summary metadata compact when LinkedIn narrows the panel. */
@@ -217,8 +283,32 @@
 
 	.les-auto-connect-manager header span,
 	.les-auto-connect-status,
-	.les-auto-connect-item small {
+	.les-auto-connect-item small,
+	.les-auto-connect-item-details {
 		color: #b7c3cc;
+	}
+
+	.les-auto-connect-item-details span + span {
+		border-color: #424b52;
+	}
+
+	.les-auto-connect-item .les-auto-connect-item-status {
+		background: #30363b;
+		color: #d4d9dd;
+	}
+
+	.les-auto-connect-item[data-status='sent'] .les-auto-connect-item-status {
+		background: #204f2d;
+		color: #b9efc4;
+	}
+
+	.les-auto-connect-item[data-status='failed'] .les-auto-connect-item-status {
+		background: #5b2c22;
+		color: #ffcabd;
+	}
+
+	.les-auto-connect-item .les-auto-connect-item-error {
+		color: #ffb09e;
 	}
 }
 
